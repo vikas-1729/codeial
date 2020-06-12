@@ -2,6 +2,9 @@ const express=require('express');
 const port = 8000;//when deploy  live it uses 80
 const app=express();
 const router=require('./routers/index');
+//taking express layout;
+const expressLayouts=require('express-ejs-layouts');
+app.use(expressLayouts);
 app.use('/',router.check);
 //setting view engine
 app.set('view engine','ejs');
