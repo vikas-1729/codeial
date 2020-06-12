@@ -1,8 +1,8 @@
 const express=require('express');
 const port = 8000;//when deploy  live it uses 80
 const app=express();
-
-
+const router=require('./routers/index');
+app.use('/',router.check);
 
 app.listen(port,function(err){
     if(err){
