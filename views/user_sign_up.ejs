@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <form action="/user/create" method="post">
+    Email:
+    <input type="email" name="email" required placeholder="enter your email">
+    Name:
+    <input type="text" name="name" required>
+    Password:
+    <input type="password" name="password" required minlength="5">
+    Retype-Password:
+    <input type="password" name="checkPassword" required minlength="5">
+    
+    <input type="submit" value="sign up" name="Sign In">
+    <br><br>
+    </form>
+    <a href="/user/signIn">Sign In</a>
+</body>
+</html>
