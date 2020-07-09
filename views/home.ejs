@@ -10,5 +10,41 @@
     <p><%= user.name%></p>
     <p><%= user.email%></p>
     <a href="/user/signOut">Sign out</a>
+    <form action="/user/post/create" method="post">
+        <textarea name="post"  cols="30" rows="10"></textarea>
+        <input type="submit" value="Post It">
+    </form>
+    <ul>
+    <% for(post of locals.posts){%>
+        <p>
+            
+           
+            <li>
+                <% if(post['user']['id']== locals.user._id) {%> 
+                <a href="/user/post/delete<%=post['_id'] %>"><strong>X</strong></a>
+                <% } %>     
+                <%= post['content'] %>
+               <strong>Posted by</strong>
+                <p><i>Email:</i><%= post['user']['email'] %></p>
+                <p><i>Name:</i><%= post['user']['name'] %></p>
+                <ul>
+                <% for(comment of post['comments']) {%>
+                   <li>
+                    <%= comment['content'] %> 
+                    <strong>by</strong>
+                    <%= comment['user']['email'] %>
+                   </li>
+                 <%} %>
+                </ul>
+                </li>
+
+                <form action="/user/comment/create?post-id=<%= post['_id'] %>" method="post">
+                   <input type="text" name ="comment" >
+                    <input type="submit" value="Comment">
+                </form>
+            
+        </p>
+    <% }%>
+    </ul>
 </body>
 </html>

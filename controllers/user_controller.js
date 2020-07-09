@@ -1,14 +1,9 @@
 const userModel=require('../modals/user');
-
+const postModel=require('../modals/post');
 
 module.exports.home=function(req,res){
-    if(req.isAuthenticated()){
-     return res.render('home',{
-        'title':'user'
-    });
-    }
-    return res.redirect('/user/signIn');
-};
+     return res.redirect('/');
+}
 
 module.exports.signIn=function(req,res){
     if(!req.isAuthenticated()){
@@ -16,7 +11,7 @@ module.exports.signIn=function(req,res){
             'title':'signIn'
         });
     }
-    return res.redirect('back');
+    return res.redirect('/');
 };
 
 module.exports.signUp=function(req,res){
@@ -25,7 +20,7 @@ module.exports.signUp=function(req,res){
             'title':'Sign up'
         });
     }
-    return res.redirect('back');
+    return res.redirect('/');
 };
 
 module.exports.create=function(req,res){
@@ -60,11 +55,12 @@ module.exports.create=function(req,res){
 };
 
 module.exports.createSession=function(req,res){
-        res.redirect('/user');
+        res.redirect('/');
 }
 module.exports.signOut=function(req,res){
     if(req.isAuthenticated()){
         req.logout();
     }
-    return res.redirect('/user');
+    return res.redirect('/');
 }
+
