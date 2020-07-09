@@ -32,7 +32,7 @@ module.exports.destroy=function(req,res){
                 if(err){
                     return;
                 }
-                console.log("deleted");
+               
                 res.redirect('/');
 
             });

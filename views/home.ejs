@@ -20,8 +20,8 @@
             
            
             <li>
-                <% if(post['user']['id']== locals.user._id) {%> 
-                <a href="/user/post/delete<%=post['_id'] %>"><strong>X</strong></a>
+                <% if(post['user']['id']== locals.user.id) {%> 
+                <a href="/user/post/delete/<%=post['_id'] %>"><strong>X</strong></a>
                 <% } %>     
                 <%= post['content'] %>
                <strong>Posted by</strong>
@@ -30,6 +30,9 @@
                 <ul>
                 <% for(comment of post['comments']) {%>
                    <li>
+                    <% if(post['user']['id']== locals.user.id||comment['user']['id']==locals.user.id) {%> 
+                        <a href="/user/comment/delete/<%=comment['_id'] %>"><strong>X</strong></a>
+                        <% } %>     
                     <%= comment['content'] %> 
                     <strong>by</strong>
                     <%= comment['user']['email'] %>

@@ -14,7 +14,7 @@ module.exports.home=function(req,res){
                 console.log(`err ${err}`);
                 return;
             }
-            console.log('post',post);
+            //console.log('post',post);
             return res.render('home',{
                 'title':'user',
                 'posts':post
