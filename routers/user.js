@@ -19,5 +19,8 @@ router.use('/post',postRouter);
 
 router.use('/comment',require('./comment'));
 
+router.get('/profile/:id',passport.checkAuthentication,controller.profile);
+//router.use('/profile/:id',passport.checkAuthentication,controller.profile);
+router.post('/update/:id',passport.checkAuthentication,controller.updateProfile);
 
 module.exports=router;

@@ -1,0 +1,13 @@
+<li>
+    <% if(post['user']['id']== locals.user.id) {%> 
+    <a href="/user/post/delete/<%=post['_id'] %>"><strong>X</strong></a>
+    <% } %>     
+    <%= post['content'] %>
+   <strong>Posted by</strong>
+    <p><i>Email:</i><%= post['user']['email'] %></p>
+    <p><i>Name:</i><%= post['user']['name'] %></p>
+    <ul>
+        <%- include('_comment.ejs') -%>
+    </ul>
+    </li>
+

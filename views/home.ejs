@@ -16,38 +16,18 @@
     </form>
     <ul>
     <% for(post of locals.posts){%>
-        <p>
-            
-           
-            <li>
-                <% if(post['user']['id']== locals.user.id) {%> 
-                <a href="/user/post/delete/<%=post['_id'] %>"><strong>X</strong></a>
-                <% } %>     
-                <%= post['content'] %>
-               <strong>Posted by</strong>
-                <p><i>Email:</i><%= post['user']['email'] %></p>
-                <p><i>Name:</i><%= post['user']['name'] %></p>
-                <ul>
-                <% for(comment of post['comments']) {%>
-                   <li>
-                    <% if(post['user']['id']== locals.user.id||comment['user']['id']==locals.user.id) {%> 
-                        <a href="/user/comment/delete/<%=comment['_id'] %>"><strong>X</strong></a>
-                        <% } %>     
-                    <%= comment['content'] %> 
-                    <strong>by</strong>
-                    <%= comment['user']['email'] %>
-                   </li>
-                 <%} %>
-                </ul>
-                </li>
-
-                <form action="/user/comment/create?post-id=<%= post['_id'] %>" method="post">
-                   <input type="text" name ="comment" >
-                    <input type="submit" value="Comment">
-                </form>
-            
-        </p>
+            <%- include('_post') -%>   
     <% }%>
     </ul>
+    <div id="friends">
+        <h4>Friends</h4>
+        <ol>
+        <% for( friend of friends){%> 
+            <li>
+                <a href="/user/profile/<%=friend.id%>"><h4><%=friend.name%></h4></a>
+            </li>    
+        <%}%>
+        </ol>
+    </div>
 </body>
 </html>

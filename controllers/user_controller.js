@@ -62,5 +62,35 @@ module.exports.signOut=function(req,res){
         req.logout();
     }
     return res.redirect('/');
-}
+};
 
+module.exports.profile= function(req,res){
+   
+    userModel.findById(req.params.id,function(err,user){
+        if(err){
+            return res.status(404).send('no authorization');
+        }
+        console.log('user',user);
+        if(!user){
+           return res.status(404).send('no authorization');
+        }
+        
+       return res.render('profile',{
+            'title':'Profile',
+            'profile_user':user
+        });
+    });
+    
+};
+module.exports.updateProfile=function(req,res){
+    if(req.params.id==req.user.id){
+        userModel.findOneAndUpdate({_id:req.params.id},{name:req.body.name},function(err,data){
+            if(err){
+                return;
+            }
+            return res.redirect('/');
+        });
+    }else{
+        return res.redirect('/');
+    }
+};

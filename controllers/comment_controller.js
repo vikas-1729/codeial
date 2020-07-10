@@ -15,9 +15,7 @@ module.exports.createComment= function(req,res){
             let post= await postModel.findById(req.query['post-id']);
             await post.comments.push(comment['_id']);
             post.save();
-
-            console.log(post);
-            return res.redirect('/');
+          return res.redirect('/');
                 
             
             
@@ -43,7 +41,7 @@ module.exports.destroy=function(req,res){
             let deleteIndex=0;
             for(let i=0;i<post.comments.length;i++){
                 if(post.comments[i]==req.params.id){
-                    console.log("find one");
+                    
                     deleteIndex=i;
                     break;
                 }

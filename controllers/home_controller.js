@@ -1,5 +1,5 @@
 const postModel=require('../modals/post');
-
+const userModel=require('../modals/user');
 module.exports.home=function(req,res){
     if(req.isAuthenticated()){
         postModel.find({}).populate('user')
@@ -14,11 +14,19 @@ module.exports.home=function(req,res){
                 console.log(`err ${err}`);
                 return;
             }
-            //console.log('post',post);
-            return res.render('home',{
-                'title':'user',
-                'posts':post
+            userModel.find({},function(err,users){
+                if(err){
+                    return;
+                }
+                return res.render('home',{
+                    'title':'user',
+                    'posts':post,
+                    'friends':users
+                });
+
             });
+           
+            
         });
    }else{
     return res.redirect('/user/signIn');

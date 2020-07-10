@@ -1,0 +1,15 @@
+<% for(comment of post['comments']) {%>
+    <li>
+     <% if(post['user']['id']== locals.user.id||comment['user']['id']==locals.user.id) {%> 
+         <a href="/user/comment/delete/<%=comment['_id'] %>"><strong>X</strong></a>
+         <% } %>     
+     <%= comment['content'] %> 
+     <strong>by</strong>
+     <%= comment['user']['email'] %>
+    </li>
+  <%} %>
+  <form action="/user/comment/create?post-id=<%= post['_id'] %>" method="post">
+     <input type="text" name ="comment" >
+      <input type="submit" value="Comment">
+  </form>
+ 
